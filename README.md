@@ -1,6 +1,19 @@
 # Adaptive Dispatching of Mobile Charging Stations using Multi-Agent Graph Convolutional Cooperative Reinforcement Learning
 This is the pytorch/pytorch-geometric implementation of AdapMCS as described in the paper: "Adaptive Dispatching of Mobile Charging Stations using Multi-Agent Graph Convolutional Cooperative Reinforcement Learning".
 
+<h3>Evaluation of Hamburg</h3>
+
+In order to further consolidate the generalizability of the approach, we evaluated the method in the city of Hamburg. To determine the demand distribution, we used a proprietary trajectory data set of a ride-hailing service in Hamburg. The charging network consists of 150 charging stations which were divided between two CSOs. We trained the full model, i.e. MAPPO + ADR + MAC, with 10 MCS for 7000 iterations and then evaluated it in both scenarios: with and without demand mutation.
+
+| Model Setup       | Mutation | Profit[%] | MCS Profit[%] | CWT[%] | CSV[%] |
+|-------------------|----------|-----------|---------------|--------|--------|
+| EXISTING          |          |    100    |       0       |   100  |  45.47 |
+| GREEDY            |          |   +9.81   |     +16.66    | -10.97 |  48.72 |
+| MAPPO + ADR + MAC |          |   +13.83  |     +22.41    | -17.17 |  49.98 |
+| EXISTING          |     X    |   +1.87   |       0       |  +1.24 |  46.15 |
+| GREEDY            |     x    |   +4.23   |     +5.69     |  -3.41 |  46.80 |
+| MAPPO + ADR + MAC |     x    |   +15.45  |     +23.90    | -16.10 |  50.19 |
+
 <h3>Inference Times</h3>
 
 Behavior of the inference times in scenarios with 100 and 150 permanently installed charging stations for Porto and Hamburg, respectively. The number of mobile charging stations is 10 for both scenarios.
